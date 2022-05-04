@@ -15,3 +15,7 @@ app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
 });
 
+app.get('/explorers', async (req, res) => {
+  const allExplorers =  await prisma.explorer.findMany({});
+  res.json(allExplorers);
+});
