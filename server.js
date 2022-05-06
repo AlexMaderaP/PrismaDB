@@ -81,3 +81,17 @@ app.post('/MissionCommanders', async (req, res) => {
   return res.json({message});
 })
 
+app.put('/MissionCommanders/:id', async (req, res) =>{
+  const id = parseInt(req.params.id);
+  await prisma.MissionCommander.update({
+    where: {
+      id: id
+    },
+    data: { 
+      lang: req.body.lang,
+      mission: req.body.mission,
+      enrollments: req.body.enrollments
+    } 
+  })
+  return res.json({message: "Actualziado correctamente"});
+})
