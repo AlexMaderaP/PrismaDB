@@ -95,3 +95,9 @@ app.put('/MissionCommanders/:id', async (req, res) =>{
   })
   return res.json({message: "Actualziado correctamente"});
 })
+
+app.delete('/MissionCommanders/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  await prisma.MissionCommander.delete({where: {id: id}});
+  return res.json({message: "Eliminado correctamente"});
+})
