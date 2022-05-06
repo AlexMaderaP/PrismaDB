@@ -68,3 +68,16 @@ app.get('/missioncommanders/:id', async (req, res) =>{
   const missionCommander = await prisma.MissionCommander.findUnique({where: {id: parseInt(id)}});
   res.json(missionCommander)
 })
+
+app.post('/MissionCommanders', async (req, res) => {
+  const missionCommander = {
+    name: req.body.name,
+    lang: req.body.lang,
+    mission: req.body.mission,
+    enrollments: req.body.enrollments
+  };
+  const message = "Mission Commander Creado";
+  await prisma.MissionCommander.create({data: missionCommander});
+  return res.json({message});
+})
+
